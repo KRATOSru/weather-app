@@ -10,15 +10,27 @@
       />
       <ul
         class="absolute bg-weather-secondary text-white w-full shadow-md py-2 px-1 top-[66px]"
-        v-if="mapboxSearchResult"
+        v-if="mapboxSearchResults"
       >
-        <li
-          v-for="searchResult in mapboxSearchResult"
-          :key="searchResult.id"
-          class="py-2 cursor-pointer"
+        <p v-if="searchError">
+          Sorry, something went wrong, please try again.
+        </p>
+        <p
+          v-if="
+            !searchError && mapboxSearchResults.length === 0
+          "
         >
-          {{ searchResult.place_name }}
-        </li>
+          No results match your query, try a different term.
+        </p>
+        <template v-else>
+          <li
+            v-for="searchResult in mapboxSearchResults"
+            :key="searchResult.id"
+            class="py-2 cursor-pointer"
+          >
+            {{ searchResult.place_name }}
+          </li>
+        </template>
       </ul>
     </div>
   </main>
@@ -30,22 +42,28 @@ import axios from 'axios'
 
 const mapboxAPIKey =
   'pk.eyJ1IjoidmxhZGltaXIxOTgwIiwiYSI6ImNsY21odTFqcjFjdm4zdm10eDZ3ODM3cDAifQ.om0PCy92D_6DCATF_ltI0A'
+
 const searchQuery = ref('')
 const queryTimeout = ref(null)
-const mapboxSearchResult = ref(null)
+const mapboxSearchResults = ref(null)
+const searchError = ref(null)
 
 const getSearchResults = () => {
   clearTimeout(queryTimeout.value)
   queryTimeout.value = setTimeout(async () => {
     if (searchQuery.value !== '') {
-      const result = await axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
-      )
-      mapboxSearchResult.value = result.data.features
-      console.log(mapboxSearchResult.value)
+      try {
+        const result = await axios.get(
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxAPIKey}&types=place`
+        )
+        mapboxSearchResults.value = result.data.features
+      } catch {
+        searchError.value = true
+      }
+
       return
     }
-    mapboxSearchResult.value = null
+    mapboxSearchResults.value = null
   }, 300)
 }
 </script>
