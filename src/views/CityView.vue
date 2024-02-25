@@ -1,7 +1,14 @@
 <template>
   <div>
-    <h1 class="text-center">CityView</h1>
+    <Suspense>
+      <AsyncCityView />
+      <template #fallback>
+        <p>Loading</p>
+      </template>
+    </Suspense>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import AsyncCityView from '../components/AsyncCityView.vue'
+</script>
