@@ -6,8 +6,9 @@
       class="text-white p-4 bg-weather-secondary w-full text-center"
     >
       <p>
-        You are currently previewing this city, click the
-        "+" icon to start tracking this city.
+        В настоящее время вы просматриваете этот город.
+        Нажмите значок «+», чтобы начать отслеживать этот
+        город
       </p>
     </div>
     <!-- Weather Overview -->
@@ -19,7 +20,7 @@
         {{
           new Date(
             weatherData.currentTime
-          ).toLocaleDateString('en-us', {
+          ).toLocaleDateString('ru', {
             weekday: 'short',
             day: '2-digit',
             month: 'long',
@@ -28,7 +29,7 @@
         {{
           new Date(
             weatherData.currentTime
-          ).toLocaleTimeString('en-us', {
+          ).toLocaleTimeString('ru', {
             timeStyle: 'short',
           })
         }}
@@ -37,10 +38,8 @@
         {{ Math.round(weatherData.current.temp) }}&deg;
       </p>
       <p>
-        Feels like
-        {{
-          Math.round(weatherData.current.feels_like)
-        }}
+        Чувствуется как
+        {{ Math.round(weatherData.current.feels_like) }}
         &deg;
       </p>
       <p class="capitalize">
@@ -60,7 +59,7 @@
     <!-- Hourly Weather -->
     <div class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-white">
-        <h2 class="mb-4">Hourly Weather</h2>
+        <h2 class="mb-4">Почасовая погода</h2>
         <div class="flex gap-10 overflow-x-scroll">
           <div
             v-for="hourData in weatherData.hourly"
@@ -71,7 +70,7 @@
               {{
                 new Date(
                   hourData.currentTime
-                ).toLocaleTimeString('en-us', {
+                ).toLocaleTimeString('ru', {
                   hour: 'numeric',
                 })
               }}
@@ -96,7 +95,7 @@
     <!-- Weekly Weather -->
     <div class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-white">
-        <h2 class="mb-4">7 Day Forecast</h2>
+        <h2 class="mb-4">Прогноз на 7 дней</h2>
         <div
           v-for="day in weatherData.daily"
           :key="day.dt"
@@ -105,7 +104,7 @@
           <p class="flex-1">
             {{
               new Date(day.dt * 1000).toLocaleDateString(
-                'en-us',
+                'ru',
                 {
                   weekday: 'long',
                 }
@@ -130,7 +129,7 @@
       @click="removeCity"
     >
       <i class="fa-solid fa-trash"></i>
-      <p>Remove City</p>
+      <p>Удалить город</p>
     </div>
   </div>
 </template>
