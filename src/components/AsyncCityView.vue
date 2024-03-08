@@ -117,8 +117,8 @@
             alt=""
           />
           <div class="flex gap-2 flex-1 justify-end">
-            <p>H: {{ Math.round(day.temp.max) }}</p>
-            <p>L: {{ Math.round(day.temp.min) }}</p>
+            <p>Верх: {{ Math.round(day.temp.max) }}</p>
+            <p>Ниж: {{ Math.round(day.temp.min) }}</p>
           </div>
         </div>
       </div>

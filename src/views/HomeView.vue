@@ -5,7 +5,7 @@
         type="text"
         v-model="searchQuery"
         @input="getSearchResults"
-        placeholder="Search for a sity or state"
+        placeholder="Поиск города или штата"
         class="py-2 px-1 w-full bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#004E71]"
       />
       <ul
@@ -13,14 +13,15 @@
         v-if="mapboxSearchResults"
       >
         <p v-if="searchError">
-          Sorry, something went wrong, please try again.
+          Извините, что-то пошло не так, попробуйте еще раз.
         </p>
         <p
           v-if="
             !searchError && mapboxSearchResults.length === 0
           "
         >
-          No results match your query, try a different term.
+          Нет результатов, соответствующих вашему запросу,
+          попробуйте другой термин.
         </p>
         <template v-else>
           <li

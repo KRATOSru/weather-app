@@ -6,7 +6,7 @@
       <RouterLink :to="{name: 'home'}">
         <div class="flex items-center gap-3">
           <i class="fa-solid fa-sun text-2xl"></i>
-          <p class="text-2xl">The Local Weather</p>
+          <p class="text-2xl">Местная погода</p>
         </div>
       </RouterLink>
 
@@ -27,7 +27,7 @@
         @close-modal="toggleModal"
       >
         <div class="text-black">
-          <h1 class="text-2xl mb-1">About:</h1>
+          <h1 class="text-2xl mb-1">О приложении:</h1>
           <p class="mb-4">
             Приложение позволяет отслеживать текущую и
             будущую погоду в выбранных вами городах.
