@@ -6,7 +6,7 @@
       <RouterLink :to="{name: 'home'}">
         <div class="flex items-center gap-3">
           <i class="fa-solid fa-sun text-2xl"></i>
-          <p class="text-2xl">Местная погода</p>
+          <p class="text-2xl">Местная погода(см отслеживаемые города)</p>
         </div>
       </RouterLink>
 
