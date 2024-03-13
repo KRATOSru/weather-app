@@ -42,6 +42,7 @@
           <CityCardSkeleton/>
         </template>
       </Suspense>
+      <p>VLADIMIR KARTYSHOV email: vkartyshov@inbox.ru</p>
     </div>
   </main>
 </template>
