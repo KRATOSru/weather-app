@@ -1,12 +1,14 @@
 <template>
-  <div v-for="city in savedCities" :key="city.id">
-    <CityCard :city="city" @click="goToCityView(city)" />
-  </div>
+  <div>
+    <div v-for="city in savedCities" :key="city.id">
+      <CityCard :city="city" @click="goToCityView(city)" />
+    </div>
 
-  <p v-if="savedCities.length === 0">
-    Никакие локации не добавлены. Чтобы начать отслеживать
-    местоположение, выполните поиск в поле выше.
-  </p>
+    <p v-if="savedCities.length === 0">
+      Никакие локации не добавлены. Чтобы начать отслеживать
+      местоположение, выполните поиск в поле выше.
+    </p>
+  </div>
 </template>
 
 <script setup>
@@ -32,6 +34,9 @@ const getCities = async () => {
     })
 
     const weatherData = await Promise.all(requests)
+
+    //Задержка анимации
+    await new Promise((res) => setTimeout(res, 300))
 
     weatherData.forEach((value, index) => {
       savedCities.value[index].weather = value.data
