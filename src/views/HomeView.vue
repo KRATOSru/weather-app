@@ -39,7 +39,7 @@
       <Suspense>
         <CityList />
         <template #fallback>
-          <CityCardSkeleton />
+          <CityCardSkeleton/>
         </template>
       </Suspense>
     </div>
